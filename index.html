@@ -1,0 +1,228 @@
+export default function LuxuryGymWebsite() {
+  const plans = [
+    {
+      name: 'Elite Basic',
+      price: '₹2,999/month',
+      features: ['Gym Access', 'Locker Facility', 'Free Diet Chart'],
+    },
+    {
+      name: 'Luxury Pro',
+      price: '₹5,999/month',
+      features: ['Personal Trainer', 'Steam & Sauna', 'Premium Lounge'],
+    },
+    {
+      name: 'VIP Beast',
+      price: '₹11,999/month',
+      features: ['24/7 Access', 'Private Coaching', 'Luxury Recovery Spa'],
+    },
+  ];
+
+  const handleJoin = (plan) => {
+    alert(`You selected the ${plan} plan!`);
+  };
+
+  const handleContact = () => {
+    alert('Our fitness advisor will contact you soon!');
+  };
+
+  return (
+    <div className="min-h-screen bg-black text-white font-sans">
+      {/* Hero Section */}
+      <section
+        className="h-screen bg-cover bg-center flex flex-col justify-center items-center text-center px-6"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1600&auto=format&fit=crop')",
+        }}
+      >
+        <div className="bg-black/60 p-8 rounded-3xl backdrop-blur-md max-w-3xl shadow-2xl">
+          <h1 className="text-6xl font-extrabold tracking-wide mb-6 text-yellow-400">
+            TITAN ELITE FITNESS
+          </h1>
+          <p className="text-xl text-gray-200 mb-8 leading-relaxed">
+            Transform your body in the most luxurious and premium gym experience.
+            Strength, aesthetics, and elite lifestyle — all in one place.
+          </p>
+          <div className="flex gap-4 justify-center flex-wrap">
+            <button
+              onClick={() => {
+                const userName = prompt('Enter your name');
+                const userPhone = prompt('Enter your phone number');
+
+                if (userName && userPhone) {
+                  alert(`Welcome ${userName}! Our team will contact you shortly on ${userPhone}.`);
+                } else {
+                  alert('Please complete the membership form.');
+                }
+              }}
+              className="bg-yellow-400 text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition-all duration-300"
+            >
+              Join Now
+            </button>
+
+            <button
+              onClick={() => {
+                const section = document.getElementById('plans');
+                section?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="border border-yellow-400 px-8 py-4 rounded-2xl font-bold hover:bg-yellow-400 hover:text-black transition-all duration-300"
+            >
+              View Plans
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-20 px-6 bg-zinc-950">
+        <h2 className="text-5xl font-bold text-center text-yellow-400 mb-14">
+          Why Choose Us
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {[
+            {
+              title: 'Luxury Interior',
+              desc: 'Modern black-gold themed interiors with premium workout ambiance.',
+            },
+            {
+              title: 'World Class Trainers',
+              desc: 'Certified elite trainers helping you unlock your strongest physique.',
+            },
+            {
+              title: 'Recovery & Spa',
+              desc: 'Steam, sauna, recovery massage, and relaxation zones included.',
+            },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="bg-zinc-900 rounded-3xl p-8 border border-yellow-500/30 hover:scale-105 transition-all duration-300 shadow-2xl"
+            >
+              <h3 className="text-3xl font-bold mb-4 text-yellow-300">
+                {item.title}
+              </h3>
+              <p className="text-gray-300 leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Membership Plans */}
+      <section id="plans" className="py-24 px-6 bg-black">
+        <h2 className="text-5xl font-bold text-center text-yellow-400 mb-16">
+          Membership Plans
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-10 max-w-7xl mx-auto">
+          {plans.map((plan, index) => (
+            <div
+              key={index}
+              className="bg-zinc-900 rounded-3xl p-10 border border-yellow-500/20 shadow-2xl hover:scale-105 transition-all duration-300"
+            >
+              <h3 className="text-3xl font-bold text-yellow-300 mb-4">
+                {plan.name}
+              </h3>
+              <p className="text-4xl font-extrabold mb-8">{plan.price}</p>
+
+              <ul className="space-y-4 mb-8 text-gray-300">
+                {plan.features.map((feature, idx) => (
+                  <li key={idx}>✔ {feature}</li>
+                ))}
+              </ul>
+
+              <button
+                onClick={() => handleJoin(plan.name)}
+                className="w-full bg-yellow-400 text-black py-4 rounded-2xl font-bold hover:opacity-90 transition-all"
+              >
+                Choose Plan
+              </button>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* BMI Calculator */}
+      <section className="py-24 px-6 bg-zinc-950 text-center">
+        <h2 className="text-5xl font-bold text-yellow-400 mb-10">
+          BMI Calculator
+        </h2>
+
+        <div className="max-w-xl mx-auto bg-zinc-900 p-10 rounded-3xl border border-yellow-500/20 shadow-2xl">
+          <p className="text-gray-300 mb-6">
+            Use this quick tool to calculate your Body Mass Index.
+          </p>
+
+          <button
+            onClick={() => {
+              const weight = prompt('Enter your weight in KG');
+              const height = prompt('Enter your height in CM');
+
+              if (weight && height) {
+                const h = height / 100;
+                const bmi = (weight / (h * h)).toFixed(1);
+                alert(`Your BMI is ${bmi}`);
+              }
+            }}
+            className="bg-yellow-400 text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition-all"
+          >
+            Calculate BMI
+          </button>
+        </div>
+      </section>
+
+      {/* Gallery */}
+      <section className="py-24 px-6 bg-black">
+        <h2 className="text-5xl font-bold text-center text-yellow-400 mb-14">
+          Gym Gallery
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          {[
+            'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200&auto=format&fit=crop',
+          ].map((img, i) => (
+            <img
+              key={i}
+              src={img}
+              alt="gym"
+              className="rounded-3xl h-80 w-full object-cover hover:scale-105 transition-all duration-300 shadow-2xl"
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section className="py-24 px-6 bg-zinc-950 text-center">
+        <h2 className="text-5xl font-bold text-yellow-400 mb-8">
+          Contact Us
+        </h2>
+
+        <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+          Ready to begin your transformation journey? Contact our elite support team.
+        </p>
+
+        <div className="flex justify-center gap-4 flex-wrap">
+          <button
+            onClick={handleContact}
+            className="bg-yellow-400 text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition-all"
+          >
+            Book Free Consultation
+          </button>
+
+          <button
+            onClick={() => window.open('https://instagram.com', '_blank')}
+            className="border border-yellow-400 px-8 py-4 rounded-2xl font-bold hover:bg-yellow-400 hover:text-black transition-all"
+          >
+            Instagram
+          </button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-8 text-center border-t border-yellow-500/20 bg-black text-gray-400">
+        © 2026 Titan Elite Fitness — Luxury Gym Experience.
+      </footer>
+    </div>
+  );
+}
